@@ -191,25 +191,15 @@ def heur_alternate(state: 'SokobanState') -> float:
             assigned_storage.add(s_idx)
             unassigned_boxes.remove(b_idx)
 
-    assigned_robots = set()  # robots that are already assigned to a box
-    for box in boxes:
+    robot = state.robots
+    for r in robot:
         min_dist = float('inf')
-        chosen_robot_idx = None
-
-        # Find nearest available robot
-        for r_idx, robot in enumerate(state.robots):
-            if r_idx in assigned_robots:
-                continue  # robot already busy
-            # find nerasest robot to box
-            dist = abs(box[0] - robot[0]) + abs(box[1] - robot[1])
-            if dist < min_dist:
+        for box in boxes:
+             dist = abs(box[0] - r[0]) + abs(box[1] - r[1])
+             if dist < min_dist:
                 min_dist = dist
-                chosen_robot_idx = r_idx
-
-        # Assign the robot to this box and add distance to total
-        if chosen_robot_idx is not None:
-            optimal_dis += min_dist
-            assigned_robots.add(chosen_robot_idx)
+        
+        optimal_dis += min_dist
 
     return optimal_dis
 
