@@ -42,7 +42,6 @@ def is_blocked(x, y, state, boxes):
 
 def box_is_frozen(box, state, boxes):
     x, y = box
-
     # never deadlock storage
     if box in state.storage:
         return False
@@ -51,9 +50,13 @@ def box_is_frozen(box, state, boxes):
     right = is_blocked(x+1, y, state, boxes)
     up    = is_blocked(x, y-1, state, boxes)
     down  = is_blocked(x, y+1, state, boxes)
+    left_up = is_blocked(x-1, y-1, state, boxes)
+    right_up = is_blocked(x+1, y-1, state, boxes)
+    left_down = is_blocked(x-1, y+1, state, boxes)
+    right_down = is_blocked(x+1, y+1, state, boxes)
 
     # cannot move horizontally AND vertically
-    if((left and right and up) or (left and right and down) or (left and up and down) or (right and up and down)):
+    if((left and left_up and up) or (up and right and right_up) or (down and right and right_down) or (left and up and left_up)):
         return True
     
     return False
