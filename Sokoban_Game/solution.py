@@ -140,7 +140,7 @@ def heur_alternate(state: 'SokobanState') -> float:
             if y == 0 or y == state.height - 1:
                 if not any(s[1] == y for s in storage):
                     return math.inf
-            # Optional: check if box is surrounded by obstacles
+            # check if box is surrounded by obstacles
             if check_obstcale(state, box):
                  return math.inf
             if box_is_frozen(box, state, boxes):

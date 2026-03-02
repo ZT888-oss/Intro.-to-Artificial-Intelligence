@@ -169,6 +169,7 @@ def test_alternate_fun() -> TestOutput:
                 score = 1
                 output = f"Solved with cost {final.gval}."
             else:
+                print(idx)
                 score = 0
                 errors = "Not solved within 2.0s."
         except Exception as ex:
