@@ -144,7 +144,8 @@ def format_verbose_test_result(test_result: TestOutput) -> str:
         report_parts.append("--------------------\n")
 
     full_report = "\n".join(report_parts)
-    return f"{"=" * 60}\n{full_report.strip()}\n{"=" * 60}"
+    #return f"{"=" * 60}\n{full_report.strip()}\n{"=" * 60}"
+    return f"{'=' * 60}\n{full_report.strip()}\n{'=' * 60}"
 
 
 def load_tests_from_module(module_name, test_list_var_name):

@@ -75,9 +75,28 @@ def prop_FC(csp: 'CSP', newVar: 'Variable' = None) -> tuple[bool, list[tuple['Va
     :param csp: the constraint satisfaction problem
     :param newVar: the most recently assigned variable
     """
-    # TODO: Implement
-    raise NotImplementedError("prop_FC not implemented")
+    # TODO: Implement 
+    pruned = []
+    if newVar is None:
+        constraints = csp.get_all_cons()
+    else:
+        constraints = csp.get_cons_with_var(newVar)
 
+    for con in constraints:
+        # Forward checking: exactly one unassigned variable
+        if con.get_n_unassigned_vars() == 1:
+            var = con.get_unassigned_vars()[0]
+
+            for val in var.cur_domain()[:]:  # iterate over copy
+                if not con.has_support(var, val):
+                    var.prune_value(val)
+                    pruned.append((var, val))
+
+            # Domain wipe-out check
+            if var.cur_domain_size() == 0:
+                return False, pruned
+
+    return True, pruned
 
 def prop_GAC(csp: 'CSP', newVar: 'Variable' = None) -> tuple[bool, list[tuple['Variable', Any]]]:
     """
@@ -95,9 +114,31 @@ def prop_GAC(csp: 'CSP', newVar: 'Variable' = None) -> tuple[bool, list[tuple['V
     :param newVar: the most recently assigned variable
     """
     # TODO: Implement
-    raise NotImplementedError("prop_GAC not implemented")
+    pruned = []
+    if newVar is None:
+        gac_queue = list(csp.get_all_cons())
+    else:
+        gac_queue = list(csp.get_cons_with_var(newVar)) 
+    while gac_queue:
+        con = gac_queue.pop(0)
 
+        for var in con.get_scope():
+            for val in var.cur_domain()[:]:  # iterate over copy
+                if not con.has_support(var, val):
+                    var.prune_value(val)
+                    pruned.append((var, val))
+                    
+                    # Domain wipe-out
+                    if var.cur_domain_size() == 0:
+                        return False, pruned
 
+                    # Re-enqueue all constraints involving var (except con already processed)
+                    for c in csp.get_cons_with_var(var):
+                        if c not in gac_queue:
+                            gac_queue.append(c)
+                            
+    return True, pruned
+        
 
 def ord_mrv(csp: 'CSP') -> 'Variable':
     """
@@ -108,4 +149,16 @@ def ord_mrv(csp: 'CSP') -> 'Variable':
     i.e. the variable with the fewest legal values.
     """
     # TODO: Implement
-    raise NotImplementedError("ord_mrv not implemented")
+    unassigned_vars = csp.get_all_unasgn_vars()
+
+    mrv_var = None
+    smallest_domain = float('inf')
+
+    for var in unassigned_vars:
+        domain_size = var.cur_domain_size()
+
+        if domain_size < smallest_domain:
+            smallest_domain = domain_size
+            mrv_var = var
+
+    return mrv_var
