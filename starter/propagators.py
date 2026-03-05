@@ -130,6 +130,7 @@ def prop_GAC(csp: 'CSP', newVar: 'Variable' = None) -> tuple[bool, list[tuple['V
                     
                     # Domain wipe-out
                     if var.cur_domain_size() == 0:
+                        print("unsolvable")
                         return False, pruned
 
                     # Re-enqueue all constraints involving var (except con already processed)

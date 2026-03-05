@@ -88,21 +88,24 @@ def futoshiki_csp_model_1(grid: list[list[Any]]) -> tuple['CSP', list[list['Vari
     #No row contains more than one of the same number.
  
     for r in range(n):
-            for c1 in range(n):     #now list avr_list is 3by3 lists that only contain value
+            for c1 in range(n):     #now list avr_list is m by m lists that only contain value
                   for c2 in range(c1+1,n):
                         v1 = variables[r][c1]
                         v2 = variables[r][c2]
                         
-                        con = Constraint(f"Row_{r}_{c1}_{c2}", [v1, v2])
-                        
-                        tup = []
-                        for a in v1.domain():
-                              for b in v2.domain():
-                                    if a != b:
-                                          tup.append((a, b))
+                        if v1 != v2:
+                              con = Constraint(f"Row_{r}_{c1}_{c2}", [v1, v2])
                               
-                        con.add_satisfying_tuples(tup)
-                        csp.add_constraint(con)
+                              tup = []
+                              for a in v1.domain():
+                                    for b in v2.domain():
+                                          if a != b:
+                                                tup.append((a, b))
+                                    
+                              con.add_satisfying_tuples(tup)
+                              csp.add_constraint(con)
+                        elif v1 == v2:
+                              continue
                         
     # No column contains more than one of the same number.
     for r1 in range(n):
@@ -111,22 +114,23 @@ def futoshiki_csp_model_1(grid: list[list[Any]]) -> tuple['CSP', list[list['Vari
                       v1 = variables[r1][c]
                       v2 = variables[r2][c]
                       
-                      con = Constraint(f"Col_{r1}_{r2}_{c}", [v1, v2])
-                      
-                      tup = []
-                      for a in v1.domain():
-                            for b in v2.domain():
-                                  if a == b:
-                                        continue
-                                  else:
-                                    tup.append((a,b))
+                      if v1 != v2:
+                        con = Constraint(f"Col_{r1}_{r2}_{c}", [v1, v2])
                         
-                      con.add_satisfying_tuples(tup)
-                      csp.add_constraint(con)  
+                        tup = []
+                        for a in v1.domain():
+                              for b in v2.domain():
+                                    if a == b:
+                                          continue
+                                    else:
+                                          tup.append((a,b))
+                              
+                        con.add_satisfying_tuples(tup)
+                        csp.add_constraint(con)  
                       
     # All specified inequality constraints 
     for i in range(n):
-          for j in range(1, 2*i-1, 2):
+          for j in range(1, 2*n-1, 2):
                 if grid[i][j] in ['<', '>']:
                         left = variables[i][(j-1)//2]
                         right = variables[i][(j+1)//2]
@@ -222,7 +226,7 @@ def futoshiki_csp_model_2(grid: list[list[Any]]) -> tuple['CSP', list[list['Vari
       
       # All specified inequality constraints 
       for i in range(l):
-            for j in range(1, 2*i-1, 2):
+            for j in range(1, 2*l-1, 2):
                   if grid[i][j] in ['<', '>']:
                               left = variables[i][(j-1)//2]
                               right = variables[i][(j+1)//2]
