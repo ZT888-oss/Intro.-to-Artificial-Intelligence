@@ -1,0 +1,363 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffffff;
+    color: #333;
+}
+
+/*''''''''''''
+   Main Layout
+''''''''''''''''''''*/
+
+.login-page {
+    display: flex;
+    height: 100vh;
+}
+
+/* ==========================
+   Left Side
+========================== */
+
+.login-introduction {
+    flex: 1;
+    background: #e8f7eb;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px;
+}
+
+.illustration-container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    margin-bottom:30px;
+}
+
+.login-illustration{
+
+    width:100%;
+    max-width:450px;
+
+    height:auto;
+
+    object-fit:contain;
+}
+
+.introduction-text {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.introduction-text h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.introduction-text p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+}
+
+
+
+.carousel-indicators {
+    display: flex;
+    gap: 12px;
+    margin-top: 50px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+    border: none;
+
+    background: #c8d8ca;
+    cursor: pointer;
+}
+
+.indicator.active {
+    width: 32px;
+    border-radius: 20px;
+    background: #6a8f74;
+}
+
+/* ==========================
+   Right Side
+========================== */
+
+.login-section {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: white;
+}
+
+.login-container {
+    width: 420px;
+}
+
+
+
+.logo {
+    text-decoration: none;
+    color: black;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.logo-icon {
+    font-size: 2.5rem;
+}
+
+.login-header {
+    margin-bottom: 50px;
+}
+
+.login-header h1 {
+    font-size: 2rem;
+    color: #999;
+    margin-top: 50px;
+    margin-bottom: 15px;
+}
+
+.login-header p {
+    color: #777;
+}
+
+/* ==========================
+   Form
+========================== */
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: #3e3d3d;
+}
+
+.form-group input {
+    width: 100%;
+
+    border: none;
+    border-bottom: 2px solid #ddd;
+
+    padding: 12px 0;
+
+    font-size: 1rem;
+
+    outline: none;
+}
+
+.form-group input:focus {
+    border-bottom: 2px solid #4caf50;
+}
+
+
+
+.password-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle {
+    margin-left: 10px;
+
+    border: none;
+    background: none;
+
+    cursor: pointer;
+
+    color: #4caf50;
+}
+
+
+
+.login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 30px;
+
+    font-size: 0.9rem;
+}
+
+.login-options a {
+    text-decoration: none;
+    color: #4caf50;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+
+.sign-in-button {
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+    border-radius: 40px;
+
+    background: #4caf50;
+    color: white;
+
+    font-size: 1.1rem;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.sign-in-button:hover {
+    background: #369939;
+    transform:scale(0.98);
+}
+
+
+
+
+.divider {
+    display: flex;
+    align-items: center;
+
+    margin: 40px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #ddd;
+}
+
+.divider span {
+    margin: 0 20px;
+    color: #888;
+}
+
+
+
+
+.google-sign-in-button {
+
+    width: 100%;
+
+    padding: 15px;
+
+    border: 1px solid #ddd;
+    border-radius: 40px;
+
+    background: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.google-sign-in-button:hover {
+    background: #f5f5f5;
+}
+
+.google-icon {
+    width: 22px;
+}
+
+/* ==========================
+   Bottom Links
+========================== */
+
+.create-account-text,
+.support-link {
+
+    text-align: center;
+
+    margin-top: 30px;
+
+    color: #777;
+}
+
+.create-account-text a,
+.support-link a {
+
+    color: #4caf50;
+    text-decoration: none;
+}
+
+/* ==========================
+   Error Message
+========================== */
+
+.form-message {
+
+    color: red;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+}
+
+
+
+@media (max-width: 900px) {
+
+    .login-page {
+
+        flex-direction: column;
+    }
+
+    .login-introduction {
+
+        display: none;
+    }
+
+    .login-section {
+
+        width: 100%;
+    }
+
+    .login-container {
+
+        width: 90%;
+        max-width: 420px;
+
+        padding: 40px 0;
+    }
+
+}

@@ -1,0 +1,149 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f5f7f8;
+    color: #202124;
+}
+
+.dashboard-header {
+    padding: 18px 7%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+
+    background: #ffffff;
+    border-bottom: 1px solid #dddddd;
+}
+
+.brand-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.brand {
+    /*By default, Flexbox arranges the direct children in a row from left to right.*/
+    display: flex;
+    gap: 14px;
+}
+
+.brand-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 12px;
+    background: #4caf50;
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.brand h1 {
+    font-size: 1.5rem;
+}
+
+.brand p {
+    margin-top: 3px;
+    color: #6f7782;
+}
+
+.dashboard-navigation {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dashboard-navigation select,
+.navigation-button,
+.support-button {
+    min-height: 44px;
+    padding: 0 18px;
+
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+
+    background: #ffffff;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.student-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-avatar {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #e8f7eb;
+    color: #377c45;
+    font-weight: 600;
+}
+
+.support-button {
+    border-color: #4caf50;
+    background: #4caf50;
+    color: #ffffff;
+}
+
+.dashboard-main {
+    width: min(1180px, 90%);
+    margin: 38px auto;
+}
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 900px) {
+    .dashboard-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dashboard-navigation {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-main {
+        width: 92%;
+        margin-top: 22px;
+    }
+
+    .dashboard-card {
+        padding: 20px;
+    }
+
+    .student-profile span {
+        display: none;
+    }
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <!-- Makes the page work properly on phones and tablets -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Q Portal Login</title>
+
+    <link rel="stylesheet" type="text/css" href="Login/login_UI.css">
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <!-- Left side: illustration and introductory content -->
+        <section class="login-introduction">
+
+            <div class="illustration-container">
+                <img
+                    src="Login/mental-health.jpg"
+                    alt="Mental wellness illustration"
+                    class="login-illustration"
+                >
+            </div>
+
+            <div class="introduction-text">
+                <h2>Breathe easy here</h2>
+
+                <p>
+                    It’s okay to not be okay.
+                </p>
+            </div>
+
+            <!-- Decorative carousel indicators -->
+            <div class="carousel-indicators" aria-label="Introduction slides">
+                <button
+                    type="button"
+                    class="indicator active"
+                    aria-label="Show slide 1"
+                    aria-current="true"
+                ></button>
+
+                <button
+                    type="button"
+                    class="indicator"
+                    aria-label="Show slide 2"
+                ></button>
+
+                <button
+                    type="button"
+                    class="indicator"
+                    aria-label="Show slide 3"
+                    
+                ></button>
+
+                <button
+                    type="button"
+                    class="indicator"
+                    aria-label="Show slide 4"
+                    
+                ></button>
+
+            </div>
+
+        </section>
+
+        <!-- Right side: login form -->
+        <section class="login-section">
+
+            <div class="login-container">
+
+                <header class="login-header">
+                    <a href="index.html" class="logo" aria-label="Q Portal home">
+                        <span class="logo-text">Q PORTAL</span>
+                        <span class="logo-icon" aria-hidden="true">🎓</span>
+                    </a>
+
+                    <h1>Welcome to Q Portal</h1>
+
+                    <p>
+                        Sign in to access your student resources.
+                    </p>
+                </header>
+
+                <form
+                    id="login-form"
+                    class="login-form"
+                    action="/api/auth/login"
+                    method="post"
+                    novalidate
+                >
+
+                    <div class="form-group">
+                        <label for="email">Username or email</label>
+                        <br> 
+                            <input
+                                type="text"
+                                id="email"
+                                name="email"
+                                autocomplete="username"
+                                placeholder="Enter your username or email"
+                                required
+                                
+                            >
+                        <br>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+
+                        <div class="password-input-container">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                autocomplete="current-password"
+                                placeholder="Enter your password"
+                                required
+                                
+                            >
+
+                            <button
+                                type="button"
+                                id="toggle-password"
+                                class="password-toggle"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="login-options">
+                        <label class="remember-me">
+                            <input
+                                type="checkbox"
+                                id="remember-me"
+                                name="rememberMe"
+                            >
+                            <span>Remember me</span>
+                        </label>
+
+                        <a href="forgot-password.html">
+                            Forgot password?
+                        </a>
+                    </div>
+
+
+
+
+                    <!-- Used later to display login errors -->
+                    <p
+                        id="login-error"
+                        class="form-message"
+                        role="alert"
+                        hidden
+                    ></p>
+
+                    <button type="submit" class="sign-in-button">
+                        Sign In
+                    </button>
+
+                </form>
+
+                <div class="divider">
+                    <span>or</span>
+                </div>
+
+                <button type="button" class="google-sign-in-button">
+                    <img
+                        src="images/google-icon.png"
+                        alt=""
+                        class="google-icon"
+                    >
+                    <span>Sign in with Google</span>
+                </button>
+
+                <p class="create-account-text">
+                    Are you new?
+                    <a href="register.html">Create an account</a>
+                </p>
+
+                <p class="support-link">
+                    Need help?
+                    <a href="support.html">Contact student support</a>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- We will add user interaction later -->
+    <script src="Login/login.js"></script>
+</body>
+</html>

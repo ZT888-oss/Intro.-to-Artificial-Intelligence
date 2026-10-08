@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="Dashboard/dashboard.css">
+</head>
+
+<body>
+
+    <header class="dashboard-header">
+        <a href="overview.html" class="brand-link">
+            <div class="brand">
+                <div class="brand-icon">💛</div>
+
+                <div>
+                    <h1>Povi</h1>
+                    <p>Student Well-being Assistant</p>
+                </div>
+            </div>
+        </a>
+
+        <nav class="dashboard-navigation">
+            <select aria-label="Select languag" id="language-select">
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+            </select>
+
+            <div class="student-profile">
+                <div class="profile-avatar">Z</div>
+                <span>Zitong Zhang</span>
+            </div>
+
+            <button type="button" class="navigation-button">
+                Profile
+            </button>
+
+            <button type="button" class="navigation-button" id="sign-out-button">
+                Sign Out
+            </button>
+
+            <button type="button" class="support-button">
+                Support Resources
+            </button>
+        </nav>
+    </header>
+
+
+    <div id="welcome-modal" class="modal">
+        <div class="modal-content">
+            <button id="close-modal" class="close-button">&times;</button>
+
+            <h2>Mood Check-in</h2>
+
+            <div class="mood-options">
+                <button type="button" class="mood-option" data-level="5">😊</button>
+                <button type="button" class="mood-option" data-level="4">🙂</button>
+                <button type="button" class="mood-option" data-level="3">😐</button>
+                <button type="button" class="mood-option" data-level="2">😟</button>
+                <button type="button" class="mood-option" data-level="1">😣</button>
+            </div>
+
+            <p id="mood-error"></p>
+
+            <button id="continue-button">Continue</button>
+        </div>
+    </div>
+
+
+    <main class="dashboard-main">
+
+        <section class="wellbeing-layout">
+
+            <div class="dashboard-card wellbeing-card">
+                <div class="wellbeing-card-header">
+                    <div>
+                        <h2 id="wellbeing-title">Well-being Index</h2>
+                        <p id="recent-checkins-text">Your recent mood check-ins</p>
+                    </div>
+
+                    <span id="wellbeing-status">Loading...</span>
+                </div>
+
+                <div class="wellbeing-result">
+                    <strong id="wellbeing-score">--</strong>
+                    <span>/100</span>
+                </div>
+
+                <div class="wellbeing-progress">
+                    <div id="wellbeing-progress-bar"></div>
+                </div>
+
+                <p id="wellbeing-description">
+                    Your average well-being condition based on your recent
+                    check-ins.
+                </p>
+            </div>
+
+            <div id="wellbeing-recommendation" class="dashboard-card wellbeing-recommendation" hidden>
+                <h3 id="recommendation-title"></h3>
+
+                <p id="recommendation-message"></p>
+
+                <div class="recommendation-actions">
+                    <button id="talk-to-povi-button" type="button" hidden>
+                        Talk to Povi
+                    </button>
+
+                    <a id="university-support-link" href="#" hidden>
+                        University mental-health support
+                    </a>
+
+                    <a id="book-support-link" href="#" hidden>
+                        Find professional support
+                    </a>
+
+                    <a id="urgent-support-link" href="#" hidden>
+                        View urgent support
+                    </a>
+                </div>
+
+                <p class="screening-disclaimer">
+                    This well-being result is informational and is not a
+                    medical diagnosis.
+                </p>
+            </div>
+
+        </section>
+
+
+
+            <section class="dashboard-card check-in-card">
+                <h2 id="title">Share How You’re Feeling</h2>
+
+                <p id="description" class="section-description">
+                    Tell Povi what has been on your mind lately. You can say whatever you want!
+                    Your friend Povi is always here listening to you!
+                </p>
+
+                <p class="povi-notice">Povi is an AI assistant, not a clinician or emergency service. Chat messages are sent to OpenAI; mood records and scores are not shared. Avoid identifying details. If you are in immediate danger, contact local emergency services or a crisis service and someone you trust.</p>
+                <button id="reset-chat" type="button" class="navigation-button">New conversation</button>
+                <div id="povi-response" class="chat-messages" role="log" aria-label="Conversation with Povi" aria-live="polite"></div>
+                <p id="povi-status" role="status"></p>
+                <p id="povi-error" role="alert"></p>
+                <form id="povi-form">
+                    <label for="student-message">Your message</label>
+                    <textarea id="student-message" name="message" maxlength="2000" required rows="3" placeholder="What is on your mind?" aria-describedby="povi-keyboard"></textarea>
+                    <p id="povi-keyboard">Enter to send · Shift+Enter for a new line</p>
+                    <button id="submit-button" type="submit" class="primary-button">Send</button>
+                </form>
+            </section>
+
+            <section class="dashboard-grid">
+
+                <article class="dashboard-card small-card">
+
+
+
+
+                </article>
+
+                <article class="dashboard-card small-card">
+                    <h2>Quick Resources</h2>
+
+                    <a href="#">Breathing exercise</a>
+                    <a href="#">Study stress tips</a>
+                    <a href="#">Campus support</a>
+                </article>
+
+            </section>
+
+        </main>
+
+        <script src="Dashboard/dashboard.js"></script>
+        <script src="Dashboard/povi-chat.js"></script>
+</body>
+
+</html>

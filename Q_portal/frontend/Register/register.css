@@ -1,0 +1,388 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    background:#f5f7fa;
+
+    color:#333;
+}
+
+
+
+.register-page{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px;
+}
+
+
+
+.register-container{
+
+    width:500px;
+
+    background:white;
+
+    padding:50px;
+
+    border-radius:15px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+
+
+.logo{
+
+    text-decoration:none;
+
+    color:#222;
+
+    font-size:30px;
+
+    font-weight:600;
+}
+
+.register-header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+}
+
+.register-header h1{
+
+    margin-top:25px;
+
+    margin-bottom:15px;
+
+    font-size:34px;
+
+    color:#2c3e50;
+}
+
+.register-header p{
+
+    color:#777;
+
+    line-height:1.6;
+}
+
+
+
+.form-group{
+
+    margin-bottom:10px;
+}
+
+.form-group label{
+
+    display:block;
+
+    font-size:18px;
+
+    margin-bottom:8px;
+
+    font-weight:500;
+}
+
+.form-group input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:1px solid #cccccc;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+    outline:none;
+
+    transition:0.3s;
+}
+
+.form-group input:focus{
+
+    border-color:#2ea043;
+
+    box-shadow:0 0 8px rgba(46,160,67,.2);
+}
+
+
+
+.password-input-container{
+
+    display:flex;
+}
+
+
+.error-message{
+
+    display:block;
+
+    color:red;
+
+    font-size:13px;
+
+    margin-top:5px;
+
+    min-height:8px;
+}
+
+
+.password-toggle{
+
+    margin-left:10px;
+
+    border:none;
+
+    background:none;
+
+    color:#2ea043;
+
+    cursor:pointer;
+
+    font-size:15px;
+}
+
+.password-toggle:hover{
+
+    text-decoration:underline;
+}
+
+.password-requirements{
+
+    margin-top:10px;
+
+    font-size:13px;
+
+    color:#777;
+
+    line-height:1.5;
+}
+
+
+.terms-container{
+
+    margin:25px 0;
+
+    font-size:15px;
+
+    line-height:1.6;
+}
+
+.terms-container label{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:10px;
+}
+
+.terms-container input{
+
+    margin-top:6px;
+}
+
+.terms-container a{
+
+    color:#2ea043;
+
+    text-decoration:none;
+}
+
+.terms-container a:hover{
+
+    text-decoration:underline;
+}
+
+
+
+.form-message{
+
+    color:red;
+
+    text-align:center;
+
+    margin-bottom:20px;
+}
+
+
+
+.register-button{
+
+    width:100%;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:50px;
+
+    background:#2ea043;
+
+    color:white;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.register-button:hover{
+
+    background:#238636;
+}
+
+.register-button:active{
+
+    transform:scale(0.98);
+}
+
+
+/*Sign in*/
+.login-link{
+
+    margin-top:30px;
+
+    text-align:center;
+
+    font-size:16px;
+
+    color:#333232;
+}
+
+.login-link a{
+
+    color:#2ea043;
+
+    text-decoration:none;
+
+    font-weight:600;
+}
+
+.login-link a:hover{
+
+    text-decoration:underline;
+}
+
+
+/* ''''''''''''
+   Terms and Privacy Modal
+''''''''''''''''''*/
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.55);
+}
+
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+.modal-content {
+    position: relative;
+
+    width: 100%;
+    max-width: 550px;
+    max-height: 80vh;
+
+    padding: 35px;
+
+    background: white;
+    border-radius: 15px;
+
+    overflow-y: auto;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+
+    color: #2c3e50;
+    font-size: 28px;
+}
+
+.modal-content p {
+    margin-bottom: 15px;
+
+    color: #555;
+    line-height: 1.7;
+}
+
+
+/*close button*/
+.close-modal {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+
+    padding: 0;
+    border: none;
+
+    background: transparent;
+
+    color: #555;
+    font-size: 30px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.close-modal:hover {
+    color: #2ea043;
+}
+
+
+
+
+@media (max-width:600px){
+
+    .register-page{
+
+        padding:20px;
+    }
+
+    .register-container{
+
+        width:100%;
+
+        padding:35px 25px;
+    }
+
+    .register-header h1{
+
+        font-size:28px;
+    }
+
+    .logo{
+
+        font-size:26px;
+    }
+}

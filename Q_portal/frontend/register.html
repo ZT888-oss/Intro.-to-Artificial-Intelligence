@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account | Q Portal</title>
+
+    <link rel="stylesheet" href="Register/register.css">
+</head>
+
+<body>
+
+    <main class="register-page">
+
+        <section class="register-section">
+
+            <div class="register-container">
+
+                <!-- Page heading -->
+                <header class="register-header">
+                    <a href="login.html" class="logo">
+                        Q PORTAL
+                        <span aria-hidden="true">🎓</span>
+                    </a>
+
+                    <h1>Create an Account</h1>
+
+                    <p>
+                        Register to access your courses, assignments,
+                        and Navi well-being assistant.
+                    </p>
+                </header>
+
+                <!-- Registration form -->
+                <form
+                    id="register-form"
+                    class="register-form"
+                    action="/api/register"
+                    method="post"
+                    novalidate
+                >
+
+                    <!-- Full name -->
+                    <div class="form-group">
+                        <label for="full-name">Full name</label>
+
+                        <input
+                            type="text"
+                            id="full-name"
+                            name="fullName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
+                        <small id="name-error" class="error-message"></small>
+                    </div>
+
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email address"
+                            autocomplete="email"
+                            required
+                        >
+
+                        <small id="email-error" class="error-message"></small>
+
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+
+                        <div class="password-input-container">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="new-password"
+                                minlength="6"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="toggle-password"
+                                class="password-toggle"
+                                aria-label="Show password"
+                            >
+                                Show
+                            </button>
+                        </div>
+
+                        <small id="password-error" class="error-message"></small>
+
+                        <p class="password-requirements">
+                            Password must contain at least 6 characters,
+                            including an uppercase letter, lowercase letter,
+                            number, and special character.
+                        </p>
+                    </div>
+
+                    <!-- Confirm password -->
+                    <div class="form-group">
+                        <label for="confirm-password">
+                            Confirm password
+                        </label>
+
+                        <div class="password-input-container">
+                            <input
+                                type="password"
+                                id="confirm-password"
+                                name="confirmPassword"
+                                placeholder="Enter your password again"
+                                autocomplete="new-password"
+                                minlength="6"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="toggle-confirm-password"
+                                class="password-toggle"
+                                aria-label="Show confirmed password"
+                            >
+                                Show
+                            </button>
+                        </div>
+
+                        <small id="confirm-password-error" class="error-message"></small>
+
+                    </div>
+
+                    <!-- Terms checkbox -->
+                    <div class="terms-container">
+                        
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="terms"
+                                name="termsAccepted"
+                                required
+                            >
+
+                            <span>
+                                I agree to the
+                                <a href="#" id="open-terms">Terms of Service</a>
+                                and
+                                <a href="#" id="open-privacy">Privacy Policy</a>.
+                            </span>
+                        </label>
+
+                        <small id="terms-error" class="error-message"></small>
+
+                    </div>
+
+            
+                    <!-- Error or success message -->
+                    <p
+                        id="register-message"
+                        class="form-message"
+                        role="alert"
+                        hidden
+                    ></p>
+
+                    <!-- Submit button -->
+                    <button
+                        type="submit"
+                        class="register-button"
+                    >
+                        Create Account
+                    </button>
+
+                </form>
+
+
+                    <!-- Terms of Service Modal -->
+                    <div class="modal-overlay" id="terms-modal" hidden>
+
+                        <div class="modal-content">
+
+                            <button class="close-modal">&times;</button>
+
+                            <h2>Terms of Service</h2>
+
+                            <p>
+                                By using Q Portal, you agree to use the system responsibly...
+                            </p>
+
+                            <p>
+                                Do not share your account with others...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Privacy Policy Modal -->
+                    <div class="modal-overlay" id="privacy-modal" hidden>
+
+                        <div class="modal-content">
+
+                            <button class="close-modal">&times;</button>
+
+                            <h2>Privacy Policy</h2>
+
+                            <p>
+                                Q Portal stores your account information securely...
+                            </p>
+
+                            <p>
+                                Your personal information will not be shared...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                <!-- Login link -->
+                <p class="login-link">
+                    Already have an account?
+                    <a href="login.html">Sign in</a>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="Register/register.js"></script>
+</body>
+</html>
