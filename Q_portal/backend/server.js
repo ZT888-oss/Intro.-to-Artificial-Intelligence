@@ -10,6 +10,11 @@ const povi = createPoviRouter();
 const app = express(); //save Express application into app
 const PORT = process.env.PORT || 3000;
 
+// cloudflared connects locally; trust only loopback proxies for HTTPS cookies.
+if (process.env.NODE_ENV === "production") {
+    app.set("trust proxy", "loopback");
+}
+
 const db = new Database("users.db");
 db.pragma("foreign_keys = ON");
 
@@ -44,7 +49,8 @@ app.use(express.json({ limit: "16kb" }));  //For incoming requests, use Express'
 //For incoming requests, use Express's static-file-serving functionality
 app.use(
     express.static(
-        path.join(__dirname, "../frontend") //Serve all the files inside the frontend folder
+        path.join(__dirname, "../frontend"), //Serve all the files inside the frontend folder
+        { index: "login.html" }
     )
 );
 
