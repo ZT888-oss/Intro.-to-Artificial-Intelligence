@@ -503,7 +503,20 @@ body {
     }
 }
 .povi-notice { color: #626b65; line-height: 1.6; margin-bottom: 18px; font-size: .9rem; }
-.chat-messages { height: 200px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; padding: 16px 4px; margin: 14px 0; }
+.chat-messages {
+    height: 300px;
+    min-height: 150px;
+    max-height: 700px;
+    max-width: 100%;
+    resize: vertical;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 4px;
+    margin: 14px 0;
+}
 .chat-message { max-width: 85%; flex-shrink: 0; border-radius: 14px; padding: 14px 18px; line-height: 1.6; overflow-wrap: anywhere; }
 .chat-message strong { font-size: .85rem; }
 .chat-message p { white-space: pre-wrap; margin-top: 4px; }
@@ -521,5 +534,4 @@ button:disabled { opacity: .6; cursor: wait; }
 }
 @media (max-width: 600px) {
     .chat-message { max-width: 94%; }
-    .chat-messages { height: 320px; }
 }

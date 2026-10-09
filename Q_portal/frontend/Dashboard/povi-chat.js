@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         log.setAttribute("aria-busy", String(value));
     }
     function append(role, content) {
+        const nearBottom = log.scrollHeight - log.scrollTop - log.clientHeight <= 40;
         const bubble = document.createElement("div");
         bubble.className = `chat-message chat-${role}`;
         const name = document.createElement("strong");
@@ -26,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         log.append(bubble);
         // Bound browser memory too, while preserving more of the visible conversation.
         while (log.children.length > 100) log.firstElementChild.remove();
-        log.scrollTop = log.scrollHeight;
+        if (nearBottom) log.scrollTop = log.scrollHeight;
         return bubble;
     }
     async function request(url, options = {}) {

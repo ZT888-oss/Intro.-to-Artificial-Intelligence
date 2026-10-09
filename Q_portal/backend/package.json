@@ -4,8 +4,10 @@
   "description": "- Student login and registration",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "node --test test/*.test.js",
+    "start": "node server.js",
+    "check:povi": "node scripts/check-povi.js",
+    "start:mock": "NODE_ENV=development POVI_MOCK_MODE=true node server.js"
   },
   "keywords": [],
   "author": "",

@@ -1,20 +1,17 @@
 const express = require("express");
-const OpenAI = require("openai");
 const { rateLimit } = require("express-rate-limit");
 const instructions = require("./povi-instructions");
+const { classifyPoviError } = require("./povi-errors");
+const { createPoviProvider } = require("./povi-provider");
 
 const MAX_MESSAGE = 2000;
 const HISTORY_TTL = 30 * 60 * 1000;
 
 // Injectable client keeps automated tests independent of credentials and paid API calls.
-function createPoviRouter({ client, model = process.env.OPENAI_MODEL || "gpt-4.1-mini" } = {}) {
+function createPoviRouter({ client, logger = console, model: requestedModel, env = process.env, fetchImpl } = {}) {
     const router = express.Router();
     const active = new Map();
-    const api = client || (process.env.OPENAI_API_KEY ? new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-        timeout: 25000,
-        maxRetries: 0
-    }) : null);
+    const { api, model, provider } = createPoviProvider({ client, model: requestedModel, env, fetchImpl });
 
     function history(req) {
         const chat = req.session.povi;
@@ -88,15 +85,15 @@ function createPoviRouter({ client, model = process.env.OPENAI_MODEL || "gpt-4.1
         } catch (error) {
             if (previousChat) req.session.povi = previousChat;
             else delete req.session.povi;
-            // Do not log request bodies, upstream errors, or credentials.
-            const limited = error.status === 429;
-            const timedOut = controller.signal.aborted || error.name === "APIConnectionTimeoutError";
-            if (limited) res.set("Retry-After", "60");
-            res.status(limited ? 429 : timedOut ? 504 : 503).json({
-                success: false,
-                message: limited ? "Povi is busy. Please try again in a minute." : timedOut ?
-                    "Povi took too long to reply. Please try again." : "Povi is temporarily unavailable. Please try again later."
+            const failure = classifyPoviError(error, controller.signal.aborted, provider);
+            // Fixed category and numeric status only; no credentials or chat text.
+            logger.warn("Povi API request failed", {
+                category: failure.code,
+                provider,
+                upstreamStatus: Number.isInteger(error.status) ? error.status : null
             });
+            if (failure.retryAfter) res.set("Retry-After", String(failure.retryAfter));
+            res.status(failure.status).json({ success: false, code: failure.code, message: failure.message });
         } finally {
             clearTimeout(timeout);
             active.delete(req.sessionID);
